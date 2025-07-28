@@ -1,6 +1,6 @@
 let http=require('http');
-// let dotenv=require('dotenv');
-// dotenv.config();
+let dotenv=require('dotenv');
+dotenv.config();
 let debug=require('debug')('development:mongoose')
 
 
@@ -14,7 +14,7 @@ const server = http.createServer(app);
 
 
 //PORT LISTENING
-let PORT=process.env.PORT ||3000;
+let PORT=process.env.PORT ;
 
 server.listen(PORT,(err)=>{
     if(err){debug(err) }
