@@ -72,4 +72,14 @@ const logIn = (req, res, next) => {
   })(req, res, next);
 };
 
-module.exports = { registerUser ,logIn};
+
+const logOut = (req, res) => {
+  req.logout((err) => {
+    if (err) return res.status(500).send('Logout failed');
+    res.send('Logged out');
+  });
+}
+
+
+
+module.exports = { registerUser ,logIn,logOut };
