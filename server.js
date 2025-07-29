@@ -5,7 +5,7 @@ let debug=require('debug')('development:mongoose')
 
 
 //DATABASE
-
+const DATABASE =require('./config/mongoDB-connection')
 
 
 //SERVER CREATION
