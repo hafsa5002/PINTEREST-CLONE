@@ -1,5 +1,8 @@
 const userModel = require('../models/userModel'); 
+const passport = require('passport');
 
+
+//user register logic
 const registerUser = async (req, res) => {
   const {
     name,
@@ -54,4 +57,19 @@ const registerUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser };
+//user login logic
+const logIn = (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) return next(err); // Internal error
+    if (!user) {
+      return res.status(401).send('Invalid credentials');
+    }
+
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+      return res.send('You are logged in');
+    });
+  })(req, res, next);
+};
+
+module.exports = { registerUser ,logIn};
