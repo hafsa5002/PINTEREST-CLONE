@@ -15,10 +15,10 @@ mongoose.connect(MONGO_URI, {
   .then(() => debug(' MongoDB CONNECTED'))
   .catch((err) => {
     debug(' MongoDB CONNECTION ERROR:', err.message);
-    process.exit(1); // optional: exit if db is required to run the app
+    process.exit(1); //  exit if db is required to run the app
   });
 
-// Optional: log disconnects or other events
+//  log disconnects or other events
 mongoose.connection.on('disconnected', () => {
   debug('MongoDB DISCONNECTED');
 });
