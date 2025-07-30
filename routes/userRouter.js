@@ -5,6 +5,10 @@ const { isLoggedIn } = require('../middlewares/isLoggedIn');
 
 
 //register route
+
+router.get('/register',(req,res)=>{
+    res.render('signup')
+})
 router.post('/register', registerUser);
 //logIN route
 router.post('/login', logIn);
