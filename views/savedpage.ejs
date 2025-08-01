@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Responsive Pinterest Clone</title>
-  <link rel="stylesheet" href="/css/style.css">
-  
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="m-0 p-0 box-border">
 
@@ -35,10 +34,10 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="grid grid-rows-[200px_1fr] h-full overflow-hidden">
+    <main class="grid grid-rows-[auto_1fr] h-full overflow-hidden">
 
       <!-- Top Section -->
-      <section class="sticky top-0 p-4 z-10 bg-red-400 ">
+      <section class="sticky top-0 bg-white p-4 z-0">
         <!-- Search Bar -->
         <div class="flex items-center mb-4">
           <div class="bg-gray-200 h-10 w-10 rounded-l-xl flex items-center justify-center">
@@ -47,22 +46,24 @@
           <input type="text" placeholder="Search Your Pins" class="bg-gray-200 text-gray-700 h-10 w-full rounded-r-xl px-3 text-sm md:text-base outline-none">
         </div>
 
-        <!-- Header Section -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 px-2">
+        <!-- Header & Tabs -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-0 px-2">
+          <div>
+            <h1 class="text-2xl md:text-4xl font-bold">YOUR SAVED IDEAS</h1>
+            <div class="flex gap-4 mt-2">
+              <button id="boardsTab" class="py-2 px-3 text-black border-b-2 border-black font-semibold">Boards</button>
+              <button id="pinsTab" class="py-2 px-3 text-black border-b-2 border-transparent hover:border-black hover:text-gray-700 font-semibold">Pins</button>
+            </div>
+          </div>
+
           <!-- Profile Info -->
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-3 mt-2 md:mt-0">
             <div class="h-12 w-12 rounded-full border-2 border-black"></div>
             <div class="text-sm md:text-base">
               <div class="font-bold">HAFSA NADEEM</div>
               <div class="text-gray-600">0 followers</div>
             </div>
             <button class="bg-gray-300 h-10 px-4 rounded-2xl text-sm">View Profile</button>
-          </div>
-
-          <!-- Tabs -->
-          <div class="flex gap-4">
-            <button id="boardsTab" class="py-2 px-3 text-black border-b-2 border-black font-semibold">Boards</button>
-            <button id="pinsTab" class="py-2 px-3 text-black border-b-2 border-transparent hover:border-black hover:text-gray-700 font-semibold">Pins</button>
           </div>
         </div>
       </section>
@@ -71,6 +72,7 @@
       <section class="overflow-y-auto p-4">
         <!-- Boards Content -->
         <div id="boardsContent" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4">
+          <!-- Repeat this block for more boards -->
           <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 1</div>
           <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 2</div>
           <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 3</div>
@@ -83,6 +85,7 @@
           <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 10</div>
           <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 11</div>
           <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 12</div>
+          <!-- Add more boards as needed -->
         </div>
 
         <!-- Pins Content -->
@@ -91,12 +94,12 @@
           <div class="bg-pink-200 h-40 rounded flex items-center justify-center">Pin 2</div>
           <div class="bg-pink-200 h-40 rounded flex items-center justify-center">Pin 3</div>
           <div class="bg-pink-200 h-40 rounded flex items-center justify-center">Pin 4</div>
+          <!-- Add more pins as needed -->
         </div>
       </section>
     </main>
   </div>
 
-
-  <script src="/scripts.js/profile.js"></script>
+ <script src="/scripts.js/profile.js"></script>
 </body>
 </html>

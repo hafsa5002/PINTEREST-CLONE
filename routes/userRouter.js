@@ -20,9 +20,15 @@ router.post('/login', logIn);
 router.post('/logout', logOut);
 
 
+
 //profile route
 router.get('/profile',(req,res)=>{
-res.render('profilepage')
+    res.render('profilepage')
+})
+
+//saved route
+router.get('/saved',(req,res)=>{
+res.render('savedpage')
 })
 
 
