@@ -19,8 +19,11 @@ router.post('/login', logIn);
 //logout route
 router.post('/logout', logOut);
 
-router.post('/profile',isLoggedIn,(req,res)=>{
-    res.send('profile')
+
+//profile route
+router.get('/profile',(req,res)=>{
+res.render('profilepage')
 })
+
 
 module.exports=router

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Pinterest Clone</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="m-0 p-0 box-border">
+
+  <div class="grid md:grid-cols-[80px_1fr] grid-cols-1 h-screen">
+
+    <!-- Sidebar -->
+    <aside class="md:static fixed bottom-0 left-0 z-10 md:h-full md:w-20 w-full flex md:flex-col flex-row justify-between md:justify-between bg-white border-r md:border-r-2 border-t-2 md:border-t-0 border-gray-300 p-2 md:p-1 gap-4 md:gap-20">
+
+      <!-- Top Icons -->
+      <div class="flex md:flex-col flex-row gap-6 items-center justify-center md:h-2/3 w-full">
+        <a href="/dashboard">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 overflow-hidden">
+            <img src="/images/pinterestlogo.jpg" alt="Pinterest Logo" class="w-full h-full object-cover rounded" />
+          </div>
+        </a>
+        <a href="/profile" class="text-black hover:text-gray-700"><i class="fa-solid fa-house text-xl"></i></a>
+        <a href="/settings" class="text-black hover:text-gray-700"><i class="fa-solid fa-compass text-xl"></i></a>
+        <a href="/dashboard" class="text-black hover:text-gray-700"><i class="fa-solid fa-bell text-xl"></i></a>
+        <a href="/profile" class="text-black hover:text-gray-700"><i class="fa-solid fa-circle-plus text-xl"></i></a>
+        <a href="/settings" class="text-black hover:text-gray-700"><i class="fa-solid fa-comments text-xl"></i></a>
+      </div>
+
+      <!-- Bottom Icon -->
+      <div class="flex items-center justify-center md:mb-4">
+        <a href="#" class="text-black hover:text-gray-700"><i class="fa-solid fa-gear text-xl"></i></a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="grid grid-rows-[auto_1fr] h-full overflow-hidden">
+
+      <!-- Top Section -->
+      <section class="sticky top-0 bg-white p-4 z-0">
+        <!-- Search Bar -->
+        <div class="flex items-center mb-4">
+          <div class="bg-gray-200 h-10 w-10 rounded-l-xl flex items-center justify-center">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <input type="text" placeholder="Search Your Pins" class="bg-gray-200 text-gray-700 h-10 w-full rounded-r-xl px-3 text-sm md:text-base outline-none">
+        </div>
+
+        <!-- Header & Tabs -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-0 px-2">
+          <div>
+            <h1 class="text-2xl md:text-4xl font-bold">YOUR SAVED IDEAS</h1>
+            <div class="flex gap-4 mt-2">
+              <button id="boardsTab" class="py-2 px-3 text-black border-b-2 border-black font-semibold">Boards</button>
+              <button id="pinsTab" class="py-2 px-3 text-black border-b-2 border-transparent hover:border-black hover:text-gray-700 font-semibold">Pins</button>
+            </div>
+          </div>
+
+          <!-- Profile Info -->
+          <div class="flex items-center gap-3 mt-2 md:mt-0">
+            <div class="h-12 w-12 rounded-full border-2 border-black"></div>
+            <div class="text-sm md:text-base">
+              <div class="font-bold">HAFSA NADEEM</div>
+              <div class="text-gray-600">0 followers</div>
+            </div>
+            <button class="bg-gray-300 h-10 px-4 rounded-2xl text-sm">View Profile</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scrollable Content -->
+      <section class="overflow-y-auto p-4">
+        <!-- Boards Content -->
+        <div id="boardsContent" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4">
+          <!-- Repeat this block for more boards -->
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 1</div>
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 2</div>
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 3</div>
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 4</div>
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 5</div>
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 6</div>
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 7</div>
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 8</div>
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 9</div>
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 10</div>
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 11</div>
+          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 12</div>
+          <!-- Add more boards as needed -->
+        </div>
+
+        <!-- Pins Content -->
+        <div id="pinsContent" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 hidden mt-4">
+          <div class="bg-pink-200 h-40 rounded flex items-center justify-center">Pin 1</div>
+          <div class="bg-pink-200 h-40 rounded flex items-center justify-center">Pin 2</div>
+          <div class="bg-pink-200 h-40 rounded flex items-center justify-center">Pin 3</div>
+          <div class="bg-pink-200 h-40 rounded flex items-center justify-center">Pin 4</div>
+          <!-- Add more pins as needed -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+ <script src="/scripts.js/profile.js"></script>
+</body>
+</html>
