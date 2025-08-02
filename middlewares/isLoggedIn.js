@@ -4,7 +4,7 @@
   if (req.isAuthenticated()) {
     return next(); // User is logged in
   }
-  res.send('must login'); // Redirect if not authenticated
+  res.redirect('login'); // Redirect if not authenticated
 };
 
  module.exports= {isLoggedIn}

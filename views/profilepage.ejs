@@ -38,7 +38,7 @@
     <main class="grid grid-rows-[350px_1fr] h-full overflow-hidden">
 
       <!-- Top Section -->
-      <section class="sticky top-0 p-4 z-10 bg-white flex flex-col gap-10 ">
+      <section class="sticky top-0 p-4 z-10 bg-white flex flex-col gap-10">
         <!-- Search Bar -->
         <div class="flex items-center mb-4">
           <div class="bg-gray-200 h-10 w-10 rounded-l-xl flex items-center justify-center">
@@ -48,17 +48,20 @@
         </div>
 
         <!-- Header Section -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 px-2">
+        <div class="flex flex-col  md:flex-row items-center justify-center  gap-4 px-2  h-4/5">
           <!-- Profile Info -->
-          <div class="flex items-center gap-3">
-            <div class="h-12 w-12 rounded-full border-2 border-black"></div>
-            <div class="text-sm md:text-base">
-              <div class="font-bold">HAFSA NADEEM</div>
+         
+            <div class="text-sm md:text-base  h-full w-1/2 flex items-center justify-center flex-col gap-3">
+              
+            <div class="h-12 w-12 rounded-full border-2 border-black "></div> 
+              <div class="font-bold text-2xl">
+                <%= user.name %>
+              </div>
+              <div class="font-bold text-base">
+                <%= user.email %>
+              </div>
               <div class="text-gray-600">0 followers</div>
-            </div>
-            <button class="bg-gray-300 h-10 px-4 rounded-2xl text-sm">View Profile</button>
-          </div>
-
+           
           <!-- Tabs -->
           <div class="flex gap-4">
             <button id="boardsTab" class="py-2 px-3 text-black border-b-2 border-black font-semibold">Boards</button>

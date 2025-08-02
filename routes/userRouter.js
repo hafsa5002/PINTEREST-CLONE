@@ -9,12 +9,15 @@ const { isLoggedIn } = require('../middlewares/isLoggedIn');
 router.get('/register',(req,res)=>{
    res.render('signup')
 })
+
 router.post('/register', registerUser);
+
 //logIN route
 router.get('/login',(req,res)=>{
     res.render('login')
 })
 router.post('/login', logIn);
+
 
 //logout route
 router.post('/logout', logOut);
@@ -25,8 +28,9 @@ router.get('/home',(req,res)=>{
 })
 
 //profile route
-router.get('/profile',(req,res)=>{
-    res.render('profilepage')
+router.get('/profile',isLoggedIn,(req,res)=>{
+    res.render('profilepage',{user: req.user})
+
 })
 
 //saved route

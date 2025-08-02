@@ -55,25 +55,25 @@
       </div>
 
       <!-- Form Section -->
-      <form action="" method="post" class="w-full mt-6 flex flex-col gap-4">
+      <form action="/user/register" method="post" class="w-full mt-6 flex flex-col gap-4">
            <div>
           <label class="block text-gray-700 font-medium mb-1">NAME:</label>
-          <input type="password" placeholder="Name" class="w-full h-12 px-4 rounded-2xl border border-black focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          <input type="text" name='name' placeholder="Name" class="w-full h-12 px-4 rounded-2xl border border-black focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
 
    <div>
           <label class="block text-gray-700 font-medium mb-1">Username:</label>
-          <input type="password" placeholder="Username" class="w-full h-12 px-4 rounded-2xl border border-black focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          <input type="text" placeholder="Username" name="username" class="w-full h-12 px-4 rounded-2xl border border-black focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
 
         <div>
           <label class="block text-gray-700 font-medium mb-1">Email:</label>
-          <input type="email" placeholder="Email" class="w-full h-12 px-4 rounded-2xl border border-black focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          <input type="email" placeholder="Email" name="email" class="w-full h-12 px-4 rounded-2xl border border-black focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
 
         <div>
           <label class="block text-gray-700 font-medium mb-1">Password:</label>
-          <input type="password" placeholder="Password" class="w-full h-12 px-4 rounded-2xl border border-black focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          <input type="password" placeholder="Password" name="password" class="w-full h-12 px-4 rounded-2xl border border-black focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
 
         <button type="submit" class="h-12 w-full mt-4 bg-red-500 text-white font-semibold rounded-2xl hover:bg-red-600 transition">
