@@ -2,6 +2,7 @@ const express =require('express');
 const router=express.Router();
 const {registerUser ,logIn, logOut}=require('../controllers/userController');
 const { isLoggedIn } = require('../middlewares/isLoggedIn');
+const{createPin} =require('../controllers/pinController')
 
 
 //register route
@@ -32,6 +33,8 @@ router.get('/profile',isLoggedIn,(req,res)=>{
     res.render('profilepage',{user: req.user})
 
 })
+//pin creation
+router.post('/pin',createPin)
 
 //saved route
 router.get('/saved',(req,res)=>{

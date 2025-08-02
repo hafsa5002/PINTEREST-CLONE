@@ -1,5 +1,6 @@
 // controllers/pinController.js
 const Pin = require('../models/pinModel');
+const userModel =require('../models/userModel')
 
 /**
  * @desc    Create a new pin
@@ -43,11 +44,21 @@ const createPin = async (req, res) => {
       createdBy: req.user._id, // Attach current user
     });
 
+      // Push pin ID to user's pins array
+    await userModel.findByIdAndUpdate(
+      req.user._id,
+      { $push: { pins: newPin._id } },
+      { new: true, useFindAndModify: false }
+    );
+
+
     return res.status(201).json({
       success: true,
       message: 'Pin created successfully.',
       data: newPin,
     });
+   
+   
 
   } catch (err) {
     console.error('Error creating pin:', err.message);
