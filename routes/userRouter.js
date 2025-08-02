@@ -19,7 +19,10 @@ router.post('/login', logIn);
 //logout route
 router.post('/logout', logOut);
 
-
+//homepage
+router.get('/home',(req,res)=>{
+    res.render('home')
+})
 
 //profile route
 router.get('/profile',(req,res)=>{
