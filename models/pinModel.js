@@ -22,16 +22,7 @@ const pinSchema = new mongoose.Schema(
       filename: {
         type: String,
       },
-    },
-    destination: {
-      type: String,
-      trim: true,
-      validate: {
-        validator: function (v) {
-          return !v || /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(v);
-        },
-        message: 'Please enter a valid URL',
-      },
+    
     },
     category: {
       type: String,
@@ -43,19 +34,9 @@ const pinSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    saves: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-      },
-    ],
-    comments: [
-      {
-        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        text: { type: String, required: true, trim: true },
-        createdAt: { type: Date, default: Date.now },
-      },
-    ],
+  
+    
+  
   },
   {
     timestamps: true, // adds createdAt and updatedAt
