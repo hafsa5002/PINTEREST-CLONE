@@ -34,6 +34,11 @@ router.get('/profile',isLoggedIn,(req,res)=>{
 
 })
 //pin creation
+router.get('/pin',(req,res)=>{
+    res.render('pinForm')
+})
+
+
 router.post('/pin',createPin)
 
 //saved route

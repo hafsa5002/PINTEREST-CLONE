@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
   },
   profileImage: {
     type: String,
-    default: '/images/default-profile.png' // You can store a placeholder image
+    default: '/images/default.jpg' // You can store a placeholder image
   },
   bio: {
     type: String,
