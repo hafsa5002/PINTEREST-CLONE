@@ -5,6 +5,7 @@ const { isLoggedIn } = require('../middlewares/isLoggedIn');
 const{createPin} =require('../controllers/pinController');
 const upload = require('../middlewares/multer.js');
 const { getHomePage } = require('../controllers/homeController.js');
+const{getProfilePage}= require('../controllers/profileController.js')
 
 
 //register route
@@ -32,10 +33,7 @@ const Pin = require('../models/pinModel');
 router.get('/home',getHomePage)
 
 //profile route
-router.get('/profile',isLoggedIn,(req,res)=>{
-    res.render('profilepage',{user: req.user})
-
-})
+router.get('/profile',isLoggedIn,getProfilePage)
 //pin creation
 router.get('/pin',(req,res)=>{
     res.render('pinForm')

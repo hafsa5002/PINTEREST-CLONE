@@ -47,15 +47,15 @@
         </div>
       </section>
 
-     <!-- Masonry Pins Section -->
+    <!-- Masonry Pins Section -->
 <section class="overflow-y-auto p-4 bg-white min-h-screen">
-  <div class="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 space-y-4">
+  <div class="columns-2 sm:columns-3 md:columns-4 lg:columns-5 xl:columns-6 gap-4">
 
     <% pins.forEach(pin => { %>
-      <div class="break-inside-avoid rounded-lg overflow-hidden shadow-md bg-white inline-block w-full">
+      <div class="mb-4 break-inside-avoid rounded-lg overflow-hidden shadow bg-white">
         <img src="<%= pin.image.url %>" alt="<%= pin.title %>" class="w-full object-cover rounded-t-lg" loading="lazy" />
         <div class="p-2">
-          <h2 class="font-semibold text-sm truncate"><%= pin.title %></h2>
+          <h2 class="font-semibold text-sm"><%= pin.title %></h2>
           <% if (pin.description) { %>
             <p class="text-xs text-gray-500"><%= pin.description %></p>
           <% } %>
@@ -66,6 +66,7 @@
 
   </div>
 </section>
+
 
     </main>
   </div>

@@ -91,12 +91,29 @@
         </div>
 
         <!-- Pins Content -->
-        <div id="pinsContent" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 hidden mt-4">
-          <div class="bg-pink-200 h-40 rounded flex items-center justify-center">Pin 1</div>
-          <div class="bg-pink-200 h-40 rounded flex items-center justify-center">Pin 2</div>
-          <div class="bg-pink-200 h-40 rounded flex items-center justify-center">Pin 3</div>
-          <div class="bg-pink-200 h-40 rounded flex items-center justify-center">Pin 4</div>
+       <!-- Pinterest Masonry Layout -->
+<section class="p-4 bg-white min-h-screen">
+  <div id="pinsContent" class="columns-2 sm:columns-3 md:columns-4 xl:columns-5 gap-4">
+    <% if (pins && pins.length > 0) { %>
+      <% pins.forEach(pin => { %>
+        <div class="mb-4 break-inside-avoid overflow-hidden rounded-lg shadow bg-white">
+          <img src="<%= pin.image.url %>" alt="<%= pin.title %>" class="w-full object-contain" loading="lazy" />
+          <div class="p-2">
+            <h3 class="text-sm font-semibold"><%= pin.title %></h3>
+            <% if (pin.description) { %>
+              <p class="text-xs text-gray-600"><%= pin.description %></p>
+            <% } %>
+            <p class="text-[10px] text-gray-400 mt-1">Category: <%= pin.category %></p>
+          </div>
         </div>
+      <% }) %>
+    <% } else { %>
+      <div class="col-span-full text-center text-gray-500">No pins to show.</div>
+    <% } %>
+  </div>
+</section>
+
+
       </section>
     </main>
   </div>
