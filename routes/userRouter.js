@@ -2,7 +2,9 @@ const express =require('express');
 const router=express.Router();
 const {registerUser ,logIn, logOut}=require('../controllers/userController');
 const { isLoggedIn } = require('../middlewares/isLoggedIn');
-const{createPin} =require('../controllers/pinController')
+const{createPin} =require('../controllers/pinController');
+const upload = require('../middlewares/multer.js');
+const { getHomePage } = require('../controllers/homeController.js');
 
 
 //register route
@@ -24,9 +26,10 @@ router.post('/login', logIn);
 router.post('/logout', logOut);
 
 //homepage
-router.get('/home',(req,res)=>{
-    res.render('home')
-})
+const Pin = require('../models/pinModel');
+
+
+router.get('/home',getHomePage)
 
 //profile route
 router.get('/profile',isLoggedIn,(req,res)=>{
@@ -39,7 +42,9 @@ router.get('/pin',(req,res)=>{
 })
 
 
-router.post('/pin',createPin)
+
+// Protect with your auth middleware if needed
+router.post('/pin', upload.single('file'), createPin);
 
 //saved route
 router.get('/saved',(req,res)=>{

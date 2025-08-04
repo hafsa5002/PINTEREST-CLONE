@@ -47,24 +47,25 @@
         </div>
       </section>
 
-      <!-- Masonry Pins Section -->
-      <section class="overflow-y-auto p-4 bg-white">
-        <div class="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 space-y-4">
-          <!-- Example Pins -->
-          <div class="bg-red-300 rounded-lg w-full inline-block" style="height: 200px;"></div>
-          <div class="bg-green-300 rounded-lg w-full inline-block" style="height: 300px;"></div>
-          <div class="bg-blue-300 rounded-lg w-full inline-block" style="height: 250px;"></div>
-          <div class="bg-yellow-300 rounded-lg w-full inline-block" style="height: 150px;"></div>
-          <div class="bg-pink-300 rounded-lg w-full inline-block" style="height: 350px;"></div>
-          <div class="bg-purple-300 rounded-lg w-full inline-block" style="height: 180px;"></div>
-          <div class="bg-orange-300 rounded-lg w-full inline-block" style="height: 270px;"></div>
-          <!-- More Pins -->
-          <div class="bg-red-300 rounded-lg w-full inline-block" style="height: 220px;"></div>
-          <div class="bg-green-300 rounded-lg w-full inline-block" style="height: 320px;"></div>
-          <div class="bg-blue-300 rounded-lg w-full inline-block" style="height: 280px;"></div>
-          <div class="bg-yellow-300 rounded-lg w-full inline-block" style="height: 190px;"></div>
+     <!-- Masonry Pins Section -->
+<section class="overflow-y-auto p-4 bg-white min-h-screen">
+  <div class="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 space-y-4">
+
+    <% pins.forEach(pin => { %>
+      <div class="break-inside-avoid rounded-lg overflow-hidden shadow-md bg-white inline-block w-full">
+        <img src="<%= pin.image.url %>" alt="<%= pin.title %>" class="w-full object-cover rounded-t-lg" loading="lazy" />
+        <div class="p-2">
+          <h2 class="font-semibold text-sm truncate"><%= pin.title %></h2>
+          <% if (pin.description) { %>
+            <p class="text-xs text-gray-500"><%= pin.description %></p>
+          <% } %>
+          <p class="text-xs text-gray-400 mt-1">Category: <%= pin.category %></p>
         </div>
-      </section>
+      </div>
+    <% }) %>
+
+  </div>
+</section>
 
     </main>
   </div>

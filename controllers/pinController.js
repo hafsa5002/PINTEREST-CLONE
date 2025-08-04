@@ -1,65 +1,45 @@
 // controllers/pinController.js
 const Pin = require('../models/pinModel');
-const userModel =require('../models/userModel')
+const User = require('../models/userModel');
 
 /**
  * @desc    Create a new pin
  * @route   POST /api/pins/create
- * @access  Private (requires login)
+ * @access  Private
  */
 const createPin = async (req, res) => {
   try {
-    const { title, description, image, category } = req.body;
+    const { title, description, category } = req.body;
 
-    // Check for required fields
-    if (!title || !image || !category) {
+    // Validate required fields
+    if (!title || !category || !req.file) {
       return res.status(400).json({
         success: false,
-        message: 'Title, image, and category are required fields.',
+        message: 'Title, category, and image are required.',
       });
     }
-
-    // Optional: Validate image URL if you're using image.url
-    if (!image.url || typeof image.url !== 'string') {
-      return res.status(400).json({
-        success: false,
-        message: 'Invalid image URL format.',
-      });
-    }
-
-    // Make sure the user is authenticated
-    if (!req.user || !req.user._id) {
-      return res.status(401).json({
-        success: false,
-        message: 'Unauthorized. Please log in to create a pin.',
-      });
-    }
-
-    // Create and save pin
+    // Create pin
     const newPin = await Pin.create({
-      title,
-      description,
-      image,
-      category,
-      createdBy: req.user._id, // Attach current user
-    });
+  title,
+  description,
+  image: {
+    url: req.file.path,           // Cloudinary image URL
+    filename: req.file.filename,  // Cloudinary public_id
+  },
+  category,
+  createdBy: req.user._id,
+});
 
-      // Push pin ID to user's pins array
-    await userModel.findByIdAndUpdate(
+    // Add pin to user's list
+    await User.findByIdAndUpdate(
       req.user._id,
       { $push: { pins: newPin._id } },
-      { new: true, useFindAndModify: false }
+      { new: true }
     );
 
+  return res.redirect('/user/home');
 
-    return res.status(201).json({
-      success: true,
-      message: 'Pin created successfully.',
-      data: newPin,
-    });
-   
-   
-
+    
   } catch (err) {
     console.error('Error creating pin:', err.message);
     return res.status(500).json({
@@ -69,6 +49,4 @@ const createPin = async (req, res) => {
   }
 };
 
-module.exports = {
-  createPin,
-};
+module.exports = { createPin };
