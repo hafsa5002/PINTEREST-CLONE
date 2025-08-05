@@ -4,33 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Responsive Pinterest Clone</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
 </head>
-<body class="m-0 p-0 box-border">
+<body class="m-0 p-0 box-border bg-gray-50 min-h-screen">
 
   <div class="grid grid-cols-1 md:grid-cols-[80px_1fr] h-screen">
 
     <!-- Sidebar -->
-    <aside class="fixed md:static bottom-0 left-0 z-10 w-full md:w-20 h-16 md:h-full bg-white border-t-2 md:border-t-0 md:border-r-2 border-gray-300 flex md:flex-col flex-row justify-between items-center md:items-stretch p-2 gap-4 md:gap-20">
-
-      <!-- Top Icons -->
+    <aside class="fixed md:static bottom-0 left-0 z-10 w-full md:w-20 h-16 md:h-full bg-white border-t-2 md:border-t-0 md:border-r-2 border-gray-200 flex md:flex-col flex-row justify-between items-center md:items-stretch p-2 gap-4 md:gap-20">
       <div class="flex md:flex-col flex-row gap-6 items-center justify-center md:h-2/3 w-full">
         <a href="/dashboard">
           <div class="w-10 h-10 overflow-hidden">
             <img src="/images/pinterestlogo.jpg" alt="Pinterest Logo" class="w-full h-full object-cover rounded" />
           </div>
         </a>
-        <a href="/profile" class="text-black hover:text-gray-700"><i class="fa-solid fa-house text-xl"></i></a>
-        <a href="/settings" class="text-black hover:text-gray-700"><i class="fa-solid fa-compass text-xl"></i></a>
-        <a href="/dashboard" class="text-black hover:text-gray-700"><i class="fa-solid fa-bell text-xl"></i></a>
-        <a href="/profile" class="text-black hover:text-gray-700"><i class="fa-solid fa-circle-plus text-xl"></i></a>
-        <a href="/settings" class="text-black hover:text-gray-700"><i class="fa-solid fa-comments text-xl"></i></a>
+        <a href="/profile" class="text-gray-700 hover:text-gray-600"><i class="fa-solid fa-house text-xl"></i></a>
+        <a href="/settings" class="text-gray-700 hover:text-gray-600"><i class="fa-solid fa-compass text-xl"></i></a>
+        <a href="/dashboard" class="text-gray-700 hover:text-gray-600"><i class="fa-solid fa-bell text-xl"></i></a>
+        <a href="/profile" class="text-gray-700 hover:text-gray-600"><i class="fa-solid fa-circle-plus text-xl"></i></a>
+        <a href="/settings" class="text-gray-700 hover:text-gray-600"><i class="fa-solid fa-comments text-xl"></i></a>
       </div>
-
-      <!-- Bottom Icon -->
       <div class="hidden md:flex items-center justify-center md:mb-4">
-        <a href="#" class="text-black hover:text-gray-700"><i class="fa-solid fa-gear text-xl"></i></a>
+        <a href="#" class="text-gray-700 hover:text-gray-600"><i class="fa-solid fa-gear text-xl"></i></a>
       </div>
     </aside>
 
@@ -38,42 +34,49 @@
     <main class="grid grid-rows-[auto_1fr] h-full overflow-hidden">
 
       <!-- Top Section -->
-      <section class="sticky top-0 bg-white z-10 border-b border-gray-300 p-4">
-        <div class="flex items-center mb-4">
-          <div class="bg-gray-200 h-10 w-10 rounded-l-xl flex items-center justify-center">
-            <i class="fa-solid fa-magnifying-glass"></i>
+      <section class="sticky top-0 bg-white z-10 border-b border-gray-200 p-4">
+        <div class="flex items-center gap-4 w-full">
+          
+          <!-- Search bar takes all space except buttons -->
+          <div class="flex items-center flex-1">
+            <div class="bg-gray-200 h-10 w-10 rounded-l-xl flex items-center justify-center">
+              <i class="fa-solid fa-magnifying-glass text-gray-600"></i>
+            </div>
+            <input
+              type="text"
+              placeholder="Search Your Pins"
+              class="bg-gray-200 text-gray-800 h-10 w-full rounded-r-xl px-3 text-sm md:text-base outline-none focus:ring-2 focus:ring-gray-300"
+            />
           </div>
-          <input type="text" placeholder="Search Your Pins" class="bg-gray-200 text-gray-700 h-10 w-full rounded-r-xl px-3 text-sm md:text-base outline-none">
+
+          <!-- Buttons stay on right -->
+          <div class="flex items-center gap-3">
+            <a href="/user/profile">
+              <button
+              type="button"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 border border-gray-200 text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300"
+            >
+              <span class="hidden sm:inline">VIEW PROFILE</span>
+              <span class="sm:hidden"><i class="fa-solid fa-user"></i></span>
+            </button>
+            </a>
+            
+          </div>
         </div>
       </section>
 
-    <!-- Masonry Pins Section -->
-<section class="overflow-y-auto p-4  min-h-screen">
-  <div class="columns-2 sm:columns-3 md:columns-4 lg:columns-5 xl:columns-6 gap-4">
-
-    <% pins.forEach(pin => { %>
-      <div class="mb-4 break-inside-avoid rounded-lg overflow-hidden shadow bg-white ">
-        <img src="<%= pin.image.url %>" alt="<%= pin.title %>" class="w-full object-cover rounded-t-lg" loading="lazy" />
-        <div class="p-2  flex items-center justify-between">
-        <div><h2 class="font-bold text-xl mt-3"><%= pin.title %></h2>
-          <% if (pin.description) { %>
-            <p class="text-base text-gray-500 "><%= pin.description %></p>
-          <% } %>
-          <p class="text-base text-gray-400 mt-1">Category: <%= pin.category %></p>
-       </div>  
-       <div class="btns bg-purple-500 h-full text-xl m-2 ">
-       <button onclick="savePost('<%= pin._id %>')" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded mt-2">
-        Save
-      </button>
-       </div>
-        
+      <!-- Masonry Pins Section -->
+      <section class="overflow-y-auto p-4">
+        <div class="columns-2 sm:columns-3 md:columns-4 lg:columns-5 xl:columns-6 gap-4">
+          <% pins.forEach(pin => { %>
+            <div class="mb-4 break-inside-avoid rounded-lg overflow-hidden shadow bg-white hover:shadow-md transition-shadow duration-200">
+              <a href="/user/details/<%=pin._id%>">
+                <img src="<%= pin.image.url %>" alt="<%= pin.title %>" class="w-full object-cover rounded-t-lg" loading="lazy" />
+              </a>
+            </div>
+          <% }) %>
         </div>
-      </div>
-    <% }) %>
-
-  </div>
-</section>
-
+      </section>
 
     </main>
   </div>

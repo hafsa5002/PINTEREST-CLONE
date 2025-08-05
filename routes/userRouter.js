@@ -2,7 +2,7 @@ const express =require('express');
 const router=express.Router();
 const {registerUser ,logIn, logOut}=require('../controllers/userController');
 const { isLoggedIn } = require('../middlewares/isLoggedIn');
-const{createPin} =require('../controllers/pinController');
+const{createPin,pinDetail} =require('../controllers/pinController');
 const upload = require('../middlewares/multer.js');
 const { getHomePage,savePost } = require('../controllers/homeController.js');
 const{getProfilePage}= require('../controllers/profileController.js')
@@ -50,5 +50,7 @@ res.render('savedpage')
 })
 
 router.post('/save/:id',isLoggedIn, savePost);
+
+router.get('/details/:id',isLoggedIn,pinDetail)
 
 module.exports=router

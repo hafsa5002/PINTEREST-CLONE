@@ -1,6 +1,6 @@
 // controllers/pinController.js
-const Pin = require('../models/pinModel');
-const User = require('../models/userModel');
+const pinModel = require('../models/pinModel');
+const userModel = require('../models/userModel');
 
 /**
  * @desc    Create a new pin
@@ -19,7 +19,7 @@ const createPin = async (req, res) => {
       });
     }
     // Create pin
-    const newPin = await Pin.create({
+    const newPin = await pinModel.create({
   title,
   description,
   image: {
@@ -31,7 +31,7 @@ const createPin = async (req, res) => {
 });
 
     // Add pin to user's list
-    await User.findByIdAndUpdate(
+    await userModel.findByIdAndUpdate(
       req.user._id,
       { $push: { pins: newPin._id } },
       { new: true }
@@ -49,4 +49,27 @@ const createPin = async (req, res) => {
   }
 };
 
-module.exports = { createPin };
+
+const pinDetail= async (req, res) => {
+  try {
+    // Step 1: Get the pin ID from the URL
+    const pinId = req.params.id;
+
+    // Step 2: Find the pin in the database
+    const pin = await pinModel.findById(pinId);
+
+    if (!pin) {
+      return res.status(404).send('Pin not found');
+    }
+
+    const user =await userModel.findById(req.user._id)
+
+    // Step 3: Pass pin details to EJS page
+    res.render('pinDetail', { pin ,user});
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+}
+
+module.exports = { createPin, pinDetail };

@@ -17,3 +17,10 @@ function savePost(postId) {
       alert('Failed to save post');
     });
 }
+
+
+//redirecting to details route
+
+function detail(id){
+  res.redirect(`user/details/${id}`)
+}
