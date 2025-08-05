@@ -49,5 +49,6 @@ router.get('/saved',(req,res)=>{
 res.render('savedpage')
 })
 
+router.post('/save/:id',isLoggedIn, savePost);
 
 module.exports=router

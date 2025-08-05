@@ -1,0 +1,19 @@
+// public/js/savePost.js
+
+// This function is called when the user clicks the "Save" button
+function savePost(postId) {
+  fetch(`/user/save/${postId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message);
+    })
+    .catch(err => {
+      console.error('Error saving post:', err);
+      alert('Failed to save post');
+    });
+}

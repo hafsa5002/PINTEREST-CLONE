@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Pin'
   }],
-  save:[{
+  saved:[{
     type: mongoose.Schema.Types.ObjectId,
     ref:'Pin'
   }],
