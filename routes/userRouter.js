@@ -5,7 +5,8 @@ const { isLoggedIn } = require('../middlewares/isLoggedIn');
 const{createPin,pinDetail} =require('../controllers/pinController');
 const upload = require('../middlewares/multer.js');
 const { getHomePage,savePost } = require('../controllers/homeController.js');
-const{getProfilePage}= require('../controllers/profileController.js')
+const{getProfilePage}= require('../controllers/profileController.js');
+let userModel =require('../models/userModel')
 
 
 //register route
@@ -45,9 +46,21 @@ router.get('/pin',(req,res)=>{
 router.post('/pin', upload.single('file'), createPin);
 
 //saved route
-router.get('/saved',(req,res)=>{
-res.render('savedpage')
-})
+router.get('/saved', isLoggedIn, async (req, res) => {
+    try {
+        // Populate the saved posts from the User model
+        let user = await userModel.findById(req.user._id).populate('saved');
+
+        // Render the page with populated saved posts
+        res.render('savedpage', {
+            user,
+            savedPosts: user.saved // Pass saved posts separately if you want
+        });
+    } catch (err) {
+        console.error(err);
+        res.redirect('/error');
+    }
+});
 
 router.post('/save/:id',isLoggedIn, savePost);
 
