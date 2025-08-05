@@ -38,6 +38,10 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Pin'
   }],
+  save:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'Pin'
+  }],
   role: {
     type: String,
     enum: ['user', 'admin'],

@@ -4,7 +4,7 @@ const {registerUser ,logIn, logOut}=require('../controllers/userController');
 const { isLoggedIn } = require('../middlewares/isLoggedIn');
 const{createPin} =require('../controllers/pinController');
 const upload = require('../middlewares/multer.js');
-const { getHomePage } = require('../controllers/homeController.js');
+const { getHomePage,savePost } = require('../controllers/homeController.js');
 const{getProfilePage}= require('../controllers/profileController.js')
 
 

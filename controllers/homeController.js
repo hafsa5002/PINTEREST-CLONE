@@ -1,4 +1,5 @@
 const pinModel =require('../models/pinModel.js')
+const userModel=require('../models/userModel.js')
 
 const getHomePage = async (req, res) => {
   try {
@@ -12,6 +13,8 @@ const getHomePage = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+
 
 
 module.exports={getHomePage}
