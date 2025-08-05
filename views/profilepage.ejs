@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Responsive Pinterest Clone</title>
-  <link rel="stylesheet" href="/css/style.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+ <link rel="stylesheet" href="/css/style.css">
   
 </head>
 <body class="m-0 p-0 box-border">
@@ -15,13 +17,13 @@
     <aside class="md:static fixed bottom-0 left-0 z-10 md:h-full md:w-20 w-full flex md:flex-col flex-row justify-between md:justify-between bg-white border-r md:border-r-2 border-t-2 md:border-t-0 border-gray-300 p-2 md:p-1 gap-4 md:gap-20">
 
       <!-- Top Icons -->
-      <div class="flex md:flex-col flex-row gap-6 items-center justify-center md:h-2/3 w-full">
+      <div class="flex md:flex-col flex-row gap-6 text-xl items-center justify-evenly md:h-2/3 w-full">
         <a href="/dashboard">
           <div class="w-10 h-10 sm:w-12 sm:h-12 overflow-hidden">
-            <img src="/images/pinterestlogo.jpg" alt="Pinterest Logo" class="w-full h-full object-cover rounded" />
+            <img src="/images/pinterestlogo.jpg" alt="Pinterest Logo" class="w-full h-full object-cover p-2 rounded" />
           </div>
         </a>
-        <a href="/profile" class="text-black hover:text-gray-700"><i class="fa-solid fa-house text-xl"></i></a>
+        <a href="/user/home" class="text-black hover:text-gray-700"><i class="fa-solid fa-house text-xl"></i></a>
         <a href="/settings" class="text-black hover:text-gray-700"><i class="fa-solid fa-compass text-xl"></i></a>
         <a href="/dashboard" class="text-black hover:text-gray-700"><i class="fa-solid fa-bell text-xl"></i></a>
         <a href="/profile" class="text-black hover:text-gray-700"><i class="fa-solid fa-circle-plus text-xl"></i></a>
@@ -48,21 +50,20 @@
         </div>
 
         <!-- Header Section -->
-        <div class="flex flex-col  md:flex-row items-center justify-center  gap-4 px-2  h-4/5">
+        <div class="flex flex-col  md:flex-row items-center justify-center   gap-4 px-2  h-4/5">
           <!-- Profile Info -->
          
             <div class="text-sm md:text-base  h-full w-1/2 flex items-center justify-center flex-col gap-3">
               
-            <div class="h-12 w-12 rounded-full border-2 border-black "> 
+            <div class="h-20 bg-red-200 w-20 rounded-full border-2 border-black "> 
             <img class="w-full bg-cover"  src="<%user.profileImage%> " alt="">  
             </div> 
-              <div class="font-bold text-2xl">
+              <div class="font-bold text-3xl">
                 <%= user.name %>
               </div>
               <div class="font-bold text-base">
                 <%= user.email %>
               </div>
-              <div class="text-gray-600">0 followers</div>
            
           <!-- Tabs -->
           <div class="flex gap-4">
