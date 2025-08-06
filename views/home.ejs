@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Responsive Pinterest Clone</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
- 
-  <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="stylesheet" href="/css/style.css">
 
 </head>
 <body class="m-0 p-0 box-border bg-gray-50 min-h-screen">
@@ -23,8 +22,8 @@
         </a>
         <a href="/profile" class=  "text-black hover:text-gray-600"><i class="fa-solid fa-house text-xl" title="Home"></i></a>
         <a href="/settings" class= "text-black hover:text-gray-600"><i class="fa-solid fa-compass text-xl" title=""></i></a>
-        <a href="/user/saved" class="text-black hover:text-gray-600"><i class="fa-solid fa-bookmark" title="Saved"></i> </a>
-        <a href="/user/pin" class=  "text-black hover:text-gray-600"><i class="fa-solid fa-circle-plus text-xl" title="Create"></i></a>
+        <a href="/pinterest/pin/saved" class="text-black hover:text-gray-600"><i class="fa-solid fa-bookmark" title="Saved"></i> </a>
+        <a href="/pinterest/pin" class=  "text-black hover:text-gray-600"><i class="fa-solid fa-circle-plus text-xl" title="Create"></i></a>
          </div>
       <div class="hidden md:flex items-center justify-center md:mb-4">
         <a href="#" class="text-black hover:text-gray-600"><i class="fa-solid fa-gear text-xl"></i></a>
@@ -53,7 +52,7 @@
           <!-- Buttons stay on right -->
           <div class="flex items-center gap-3">
            
-            <a href="/user/profile">
+            <a href="/pinterest/profile">
               <button
               type="button"
                class="bg-gray-300 h-10 px-4 rounded-2xl text-sm">
@@ -71,7 +70,7 @@
         <div class="columns-2 sm:columns-3 md:columns-4 lg:columns-5 xl:columns-6 gap-4">
           <% pins.forEach(pin => { %>
             <div class="mb-4 break-inside-avoid rounded-lg overflow-hidden shadow bg-white hover:shadow-md transition-shadow duration-200">
-              <a href="/user/details/<%=pin._id%>">
+              <a href="/pinterest/pin/details/<%=pin._id%>">
                 <img src="<%= pin.image.url %>" alt="<%= pin.title %>" class="w-full object-cover rounded-t-lg" loading="lazy" />
               </a>
             </div>

@@ -99,7 +99,7 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 mt-4 auto-rows-fr">
               <% savedPosts.forEach(function(saved) { %>
                 <div class="bg-white rounded overflow-hidden ">
-                  <a href="/user/details/<%= saved._id %>" class="block relative">
+                  <a href="/pinterest/pin/details/<%= saved._id %>" class="block relative">
                     <!-- If your saved.image is a Cloudinary url you can add transformations for thumbnails -->
                     <img
                       src="<%= saved.image.url %>"
@@ -119,7 +119,7 @@
                       </div>
 
                       <!-- Remove saved button -->
-                      <form action="/pins/<%= saved._id %>/unsave" method="POST" class="ml-2">
+                      <form action="/pinterest/pin/<%= saved._id %>/unsave" method="POST" class="ml-2">
                         <button type="submit" class="text-xs px-2 py-1 border rounded hover:bg-gray-100">Remove</button>
                       </form>
                     </div>

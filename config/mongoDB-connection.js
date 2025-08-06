@@ -19,13 +19,13 @@ mongoose.connect(MONGO_URI)
 
 //  Listen for disconnects
 mongoose.connection.on('disconnected', () => {
-  debug('⚠️ MongoDB disconnected');
+  debug('MongoDB disconnected');
 });
 
 //  handle app termination
 process.on('SIGINT', async () => {
   await mongoose.connection.close();
-  debug('💡 MongoDB connection closed due to app termination');
+  debug('MongoDB connection closed due to app termination');
   process.exit(0);
 });
 

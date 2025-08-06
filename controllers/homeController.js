@@ -14,29 +14,8 @@ const getHomePage = async (req, res) => {
   }
 };
 
-const savePost = async (req, res) => {
-  try {
-    const currentPost = await pinModel.findById(req.params.id);
-    if (!currentPost) return res.status(404).json({ message: 'Post not found' });
-
-    const user = await userModel.findById(req.user._id);
-    if (!user) return res.status(404).json({ message: 'User not found' });
-
-    // Avoid duplicate saves
-    if (user.saved.includes(currentPost._id)) {
-      return res.status(400).json({ message: 'Post already saved' });
-    }
-
-    user.saved.push(currentPost._id);
-    await user.save();
-
-    res.status(200).json({ message: 'Post saved successfully' });
-  } catch (error) {
-    console.error('Save Post Error:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-};
 
 
 
-module.exports={getHomePage, savePost}
+
+module.exports={getHomePage}

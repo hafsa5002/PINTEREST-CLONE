@@ -2,7 +2,7 @@
 
 // This function is called when the user clicks the "Save" button
 function savePost(postId) {
-  fetch(`/user/save/${postId}`, {
+  fetch(`/pinterest/pin/save/${postId}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

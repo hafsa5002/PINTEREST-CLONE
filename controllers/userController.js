@@ -67,7 +67,7 @@ const logIn = (req, res, next) => {
 
     req.logIn(user, (err) => {
       if (err) return next(err);
-      res.redirect('/user/profile')
+      res.redirect('/pinterest/profile')
     });
   })(req, res, next);
 };
