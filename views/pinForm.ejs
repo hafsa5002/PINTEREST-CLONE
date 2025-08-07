@@ -11,24 +11,35 @@
 </head>
 <body class="m-0 p-0 box-border bg-[#f0f0f0] font-sans">
 
-  <div class="grid grid-cols-1 md:grid-cols-[80px_1fr] h-screen">
+   <div class="grid grid-cols-1 md:grid-cols-[80px_1fr] h-screen ">
 
     <!-- Sidebar -->
-    <aside class="fixed md:static bottom-0 left-0 z-10 w-full md:w-20 h-16 md:h-full bg-white border-t-2 md:border-t-0 md:border-r-2 border-gray-300 flex md:flex-col flex-row justify-between items-center md:items-stretch p-2 gap-4 md:gap-20">
-      <div class="flex md:flex-col flex-row gap-6 items-center justify-center md:h-2/3 w-full">
-        <a href="/dashboard">
+    <aside class="fixed md:static bottom-0 left-0 z-10 w-full md:w-20 h-16  md:h-full bg-white border-t-2 md:border-t-0 md:border-r-2 border-gray-200 flex md:flex-col flex-row justify-between items-center md:items-stretch p-2 gap-4 md:gap-20">
+      <div class="flex md:flex-col flex-row gap-4 items-center justify-evenly md:h-2/3 w-full  ">
+        <a href="/pinterest/home">
           <div class="w-10 h-10 overflow-hidden">
-            <img src="/images/pinterestlogo.jpg" alt="Pinterest Logo" class="w-full h-full object-cover rounded" />
+            <img src="/images/pinterestlogo.jpg" alt="Pinterest Logo" class="p-1 w-full h-full object-cover rounded" />
           </div>
         </a>
-        <a href="/profile" class="text-black hover:text-gray-700"><i class="fa-solid fa-house text-xl"></i></a>
-        <a href="/settings" class="text-black hover:text-gray-700"><i class="fa-solid fa-compass text-xl"></i></a>
-        <a href="/dashboard" class="text-black hover:text-gray-700"><i class="fa-solid fa-bell text-xl"></i></a>
-        <a href="/profile" class="text-black hover:text-gray-700"><i class="fa-solid fa-circle-plus text-xl"></i></a>
-        <a href="/settings" class="text-black hover:text-gray-700"><i class="fa-solid fa-comments text-xl"></i></a>
-      </div>
-      <div class="hidden md:flex items-center justify-center md:mb-4">
-        <a href="#" class="text-black hover:text-gray-700"><i class="fa-solid fa-gear text-xl"></i></a>
+        <a href="/pinterest/home" class=  "text-black hover:text-gray-600"><i class="fa-solid fa-house text-xl" title="Home"></i></a>
+        <a href="/pinterest/profile" class= "text-black hover:text-gray-600"><i class="fa-solid fa-user text-xl" title="profile"></i></a>
+        <a href="/pinterest/pin/saved" class="text-black hover:text-gray-600"><i class="fa-solid fa-bookmark text-xl" title="Saved"></i> </a>
+        <a href="/pinterest/pin" class=  "text-black hover:text-gray-600"><i class="fa-solid fa-circle-plus text-xl" title="Create"></i></a>
+         </div>
+      <div class="hidden md:flex items-center justify-center md:mb-4 ">
+  <!-- Settings Icon Button -->
+  <button id="settingsBtn" class="p-2 hover:bg-gray-100 rounded-full focus:outline-none">
+    <i class="fas fa-cog text-xl"></i>
+  </button>
+
+  <!-- Dropdown Menu (Initially Hidden) -->
+  <div id="settingsMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-50 ">
+   <a href="/pinterest/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
+    <form action="/pinterest/logout" method="POST">
+      <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+    </form>
+</div>
+
       </div>
     </aside>
 
@@ -55,7 +66,7 @@
         <form action="/pinterest/pin" method="post" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[calc(100vh-160px)] bg-[#f0f0f0]">
           
           <!-- File Upload -->
-          <div class="flex items-center justify-center bg-white rounded-2xl shadow-sm border border-gray-300 overflow-hidden min-h-[300px]">
+          <!-- <div class="flex items-center justify-center bg-white rounded-2xl shadow-sm border border-gray-300 overflow-hidden min-h-[300px]">
             <label for="imageUpload" class="cursor-pointer w-full h-full flex flex-col items-center justify-center p-6 hover:bg-gray-50 transition text-center">
               <svg class="w-12 h-12 text-gray-400 mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-4m0 0V8m0 4h4m-4 0H8m13 4.5V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2h6.5"></path>
@@ -63,7 +74,19 @@
               <p class="text-gray-500 text-sm">Click to upload or drag an image here</p>
               <input type="file" id="imageUpload" name="file" class="hidden" />
             </label>
-          </div>
+          </div> -->
+          <div class="flex flex-col items-center justify-center bg-white rounded-2xl shadow-sm border border-gray-300 overflow-hidden min-h-[300px]">
+  <label for="imageUpload" class="cursor-pointer w-full h-full flex flex-col items-center justify-center p-6 hover:bg-gray-50 transition text-center">
+    <svg class="w-12 h-12 text-gray-400 mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-4m0 0V8m0 4h4m-4 0H8m13 4.5V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2h6.5"></path>
+    </svg>
+    <p class="text-gray-500 text-sm">Click to upload or drag an image here</p>
+    <input type="file" id="imageUpload" name="file" accept="image/*" class="hidden" />
+      <div class="mt-4">
+    <img id="imagePreview" src="#" alt="Image Preview" class=" w-full h-full z-10 object-cover border rounded" />
+  </div>
+</div>
+  </label>
 
           <!-- Text Inputs -->
           <div class="flex flex-col gap-4 bg-white p-6 rounded-2xl shadow-sm border border-gray-300">
@@ -88,6 +111,8 @@
 
     </main>
   </div>
+  <script src="/scripts.js/profile.js"></script>
+  <script src="/scripts.js/form.js"></script>
 </body>
 </html>
 
