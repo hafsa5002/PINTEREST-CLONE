@@ -9,32 +9,40 @@
  <link rel="stylesheet" href="/css/style.css">
   
 </head>
-<body class="m-0 p-0 box-border">
+<body class="m-0 p-0 box-border min-h-screen">
 
-  <div class="grid md:grid-cols-[80px_1fr] grid-cols-1 h-screen">
+  <div class="grid grid-cols-1 md:grid-cols-[80px_1fr] h-screen ">
 
     <!-- Sidebar -->
-    <aside class="md:static fixed bottom-0 left-0 z-10 md:h-full md:w-20 w-full flex md:flex-col flex-row justify-between md:justify-between bg-white border-r md:border-r-2 border-t-2 md:border-t-0 border-gray-300 p-2 md:p-1 gap-4 md:gap-20">
-
-      <!-- Top Icons -->
-      <div class="flex md:flex-col flex-row gap-6 text-xl items-center justify-evenly md:h-2/3 w-full">
+    <aside class="fixed md:static bottom-0 left-0 z-10 w-full md:w-20 h-16  md:h-full bg-white border-t-2 md:border-t-0 md:border-r-2 border-gray-200 flex md:flex-col flex-row justify-between items-center md:items-stretch p-2 gap-4 md:gap-20">
+      <div class="flex md:flex-col flex-row gap-4 items-center justify-evenly md:h-2/3 w-full  ">
         <a href="/dashboard">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 overflow-hidden">
-            <img src="/images/pinterestlogo.jpg" alt="Pinterest Logo" class="w-full h-full object-cover p-2 rounded" />
+          <div class="w-10 h-10 overflow-hidden">
+            <img src="/images/pinterestlogo.jpg" alt="Pinterest Logo" class="p-1 w-full h-full object-cover rounded" />
           </div>
         </a>
-        <a href="/pinterest/home" class="text-black hover:text-gray-700"><i class="fa-solid fa-house text-xl"></i></a>
-        <a href="/settings" class="text-black hover:text-gray-700"><i class="fa-solid fa-compass text-xl"></i></a>
-        <a href="/dashboard" class="text-black hover:text-gray-700"><i class="fa-solid fa-bell text-xl"></i></a>
-        <a href="/profile" class="text-black hover:text-gray-700"><i class="fa-solid fa-circle-plus text-xl"></i></a>
-        <a href="/settings" class="text-black hover:text-gray-700"><i class="fa-solid fa-comments text-xl"></i></a>
-      </div>
+        <a href="/pinterest/home" class=  "text-black hover:text-gray-600"><i class="fa-solid fa-house text-xl" title="Home"></i></a>
+        <a href="/pinterest/profile" class= "text-black hover:text-gray-600"><i class="fa-solid fa-user text-xl" title="profile"></i></a>
+        <a href="/pinterest/pin/saved" class="text-black hover:text-gray-600"><i class="fa-solid fa-bookmark text-xl" title="Saved"></i> </a>
+        <a href="/pinterest/pin" class=  "text-black hover:text-gray-600"><i class="fa-solid fa-circle-plus text-xl" title="Create"></i></a>
+         </div>
+      <div class="hidden md:flex items-center justify-center md:mb-4 ">
+  <!-- Settings Icon Button -->
+  <button id="settingsBtn" class="p-2 hover:bg-gray-100 rounded-full focus:outline-none">
+    <i class="fas fa-cog text-xl"></i>
+  </button>
 
-      <!-- Bottom Icon -->
-      <div class="flex items-center justify-center md:mb-4">
-        <a href="#" class="text-black hover:text-gray-700"><i class="fa-solid fa-gear text-xl"></i></a>
+  <!-- Dropdown Menu (Initially Hidden) -->
+  <div id="settingsMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-50 ">
+   <a href="/pinterest/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
+    <form action="/pinterest/logout" method="POST">
+      <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+    </form>
+</div>
+
       </div>
     </aside>
+
 
     <!-- Main Content -->
     <main class="grid grid-rows-[350px_1fr] h-full overflow-hidden">

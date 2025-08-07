@@ -23,3 +23,18 @@
     boardsTab.classList.add("text-gray-500");
   });
 
+//logout
+  const settingsBtn = document.getElementById('settingsBtn');
+  const settingsMenu = document.getElementById('settingsMenu');
+
+  settingsBtn.addEventListener('click', () => {
+    settingsMenu.classList.toggle('hidden');
+  });
+
+  // Optional: Hide dropdown if clicked outside
+  document.addEventListener('click', (e) => {
+    if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
+      settingsMenu.classList.add('hidden');
+    }
+  });
+
