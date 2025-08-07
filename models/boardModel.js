@@ -12,6 +12,16 @@ const boardSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    image: {
+      url: {
+        type: String,
+        required: [true, 'Image URL is required'],
+      },
+      filename: {
+        type: String,
+      },
+    
+    },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User", // Reference to the user who owns this board

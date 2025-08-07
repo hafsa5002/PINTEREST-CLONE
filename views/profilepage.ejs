@@ -81,9 +81,9 @@
   <% if (boards && boards.length > 0) { %>
     <% boards.forEach(board => { %>
       <a href="/pinterest/boards/<%= board._id %>" class="bg-white shadow rounded overflow-hidden hover:shadow-md transition duration-200">
-        <div class="h-40 bg-gray-100 flex items-center justify-center">
-          <% if (board.coverImage?.url) { %>
-            <img src="<%= board.coverImage.url %>" alt="<%= board.name %>" class="w-full h-full object-cover"/>
+        <div class="h-auto  flex items-center justify-center bg-gray-100">
+          <% if (board.image?.url) { %>
+            <img src="<%= board.image.url %>" alt="<%= board.name %>" class="w-full h-full object-cover"/>
           <% } else { %>
             <span class="text-gray-500 font-semibold"><%= board.name %></span>
           <% } %>

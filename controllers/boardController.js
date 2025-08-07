@@ -10,37 +10,73 @@ const createBoard = async (req, res) => {
     const { name, description } = req.body;
 
     // Validate required fields
-    if (!name || !description ) {
+    if (!name || !description || !req.file) {
       return res.status(400).json({
         success: false,
-        message: 'name and description are required.',
+        message: 'Name, description, and image are required.',
       });
     }
-    // Create pin
-    const newBoard = await boardModel.create({
-  name,
-  description,
-  owner: req.user._id,
-});
 
-    // Add pin to user's list
+    // Check if board already exists for this user
+    const existingBoard = await boardModel.findOne({ name, owner: req.user._id });
+    if (existingBoard) {
+      return res.status(409).json({
+        success: false,
+        message: 'A board with this name already exists.',
+      });
+    }
+
+    console.log('Uploaded file object:', req.file);
+
+    // Create the board
+    const newBoard = await boardModel.create({
+      name,
+      description,
+      image: {
+        url: req.file.path,           // Cloudinary image URL
+        filename: req.file.filename,  // Cloudinary public_id
+      },
+      owner: req.user._id,
+    });
+
+    // Add board to user's boards list
     await userModel.findByIdAndUpdate(
       req.user._id,
       { $push: { boards: newBoard._id } },
       { new: true }
     );
 
-  return res.redirect('/pinterest/profile');
+    return res.redirect('/pinterest/home');
 
-    
   } catch (err) {
-    console.error('Error creating board:', err.message);
+    console.error('Error creating board:', err);
     return res.status(500).json({
       success: false,
       message: 'Server error. Please try again later.',
     });
   }
 };
+
+const pinRender = async (req, res) => {
+  try {
+    const id=req.params.boardId;
+     // get name from URL
+    const board = await boardModel
+      .findOne({ _id : id, owner: req.user._id })
+      .populate('pins'); // assumes pins is an array of ObjectIds
+
+    if (!board) {
+      return res.status(404).send('Board not found');
+    }
+
+    res.render('boardPosts.ejs', { board });
+  } catch (err) {
+    console.error('Error rendering board pins:', err);
+    res.status(500).send('Server error');
+  }
+};
+
+
 
 const addPinToBoard = async (req, res) => {
   const {pinId } = req.params;
@@ -69,19 +105,8 @@ const addPinToBoard = async (req, res) => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
 const renderBoardForm=(req,res)=>{
 res.render('createBoard')
 }
 
-module.exports={createBoard, renderBoardForm,addPinToBoard}
+module.exports={createBoard, renderBoardForm,addPinToBoard, pinRender}
