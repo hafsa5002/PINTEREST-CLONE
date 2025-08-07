@@ -5,7 +5,8 @@ const session = require('express-session');
 const passport = require('passport');
 const initializePassport = require('./config/passport-config');
 const userRouter=require('./routes/userRouter');
-const pinRouter=require('./routes/pinRouter')
+const pinRouter=require('./routes/pinRouter');
+const boardRouter=require('./routes/boardRouter')
 require('dotenv').config();
 
 //setting up middlewares for parsing data
@@ -38,7 +39,7 @@ app.use(passport.session());
 //setting up routes
 app.use('/pinterest',userRouter);
 app.use('/pinterest/pin', pinRouter);
-
+app.use('/pinterest/boards',boardRouter)
 
 
 module.exports = app;

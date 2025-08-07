@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Board — Pinterest Clone</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <div class="md:grid md:grid-cols-[80px_1fr] min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="fixed bottom-0 md:static md:h-screen bg-white w-full md:w-20 border-t md:border-t-0 md:border-r border-gray-300 flex md:flex-col justify-around md:justify-between items-center p-2 z-10">
+      <div class="flex md:flex-col items-center gap-4">
+        <a href="/dashboard">
+          <img src="/images/pinterestlogo.jpg" alt="Pinterest Logo" class="w-10 h-10 rounded object-cover" />
+        </a>
+        <a href="/profile"><i class="fa-solid fa-house text-xl text-gray-700 hover:text-gray-900"></i></a>
+        <a href="/settings"><i class="fa-solid fa-compass text-xl text-gray-700 hover:text-gray-900"></i></a>
+        <a href="/dashboard"><i class="fa-solid fa-bell text-xl text-gray-700 hover:text-gray-900"></i></a>
+        <a href="/profile"><i class="fa-solid fa-circle-plus text-xl text-gray-700 hover:text-gray-900"></i></a>
+        <a href="/settings"><i class="fa-solid fa-comments text-xl text-gray-700 hover:text-gray-900"></i></a>
+      </div>
+      <div class="hidden md:block mb-4">
+        <a href="#"><i class="fa-solid fa-gear text-xl text-gray-700 hover:text-gray-900"></i></a>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex flex-col min-h-screen w-full overflow-hidden">
+
+      <!-- Top Bar -->
+      <section class="sticky top-0 bg-white border-b border-gray-300 p-4 z-10">
+        <div class="flex items-center">
+          <div class="bg-gray-200 h-10 w-10 flex items-center justify-center rounded-l-xl">
+            <i class="fa-solid fa-magnifying-glass text-gray-700"></i>
+          </div>
+          <input type="text" placeholder="Search Your Boards" class="h-10 w-full bg-gray-200 px-3 text-sm rounded-r-xl outline-none text-gray-700" />
+        </div>
+      </section>
+
+      <!-- Page Header -->
+      <section class="bg-white border-b border-gray-300 px-6 py-4 font-bold text-xl md:text-2xl">
+        Create Board
+      </section>
+
+      <!-- Form -->
+      <section class="p-4 md:p-6 overflow-y-auto flex-grow">
+        <form action="/pinterest/boards/create" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-2xl shadow-md border border-gray-300">
+
+          <!-- Left Column -->
+          <div class="flex flex-col gap-5">
+            <input type="text" name="name" placeholder="Board name (e.g., Travel Ideas)" class="p-3 text-sm border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400" required />
+
+            <textarea name="description" placeholder="Describe your board" rows="4" class="p-3 text-sm border border-gray-300 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-red-400" required></textarea>
+
+            <select name="visibility" class="p-3 text-sm border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400" required>
+              <option disabled selected value="">Select visibility</option>
+              <option value="Public">Public</option>
+              <option value="Private">Private</option>
+            </select>
+
+          
+            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-xl transition">
+              Create Board
+            </button>
+          </div>
+
+          <!-- Optional Right Column (you can use it for preview or tips later) -->
+          <div class="hidden md:flex flex-col justify-center items-center text-gray-500 text-sm">
+            <p class="text-center">Tip: Use a meaningful name and description. You can always edit this later.</p>
+          </div>
+
+        </form>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>

@@ -4,38 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title><%= pin.title %> | Pin Details</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- Your custom styles (bg pattern etc) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/style.css" />
   <style>
-    /* Safety: ensure body doesn't get extra scroll from margins */
     html, body { height: 100%; margin: 0; }
   </style>
 </head>
+
 <body class="bg-pinterest-pattern min-h-screen text-gray-800">
 
-  <!-- Center container -->
   <main class="min-h-screen flex items-center justify-center py-6 px-4">
-    <!-- Card: constrained to viewport height so page doesn't scroll -->
     <article class="w-full max-w-6xl bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row max-h-screen">
       
-      <!-- Left: Image column (no cropping; image fully visible) -->
+      <!-- Image Section -->
       <section class="md:w-7/12 w-full bg-white flex items-center justify-center">
-        <img
-          src="<%= pin.image?.url || '/images/placeholder.png' %>"
-          alt="<%= pin.title %>"
-          class="w-full h-auto max-h-[90vh] object-contain"
-        />
+        <img src="<%= pin.image?.url || '/images/placeholder.png' %>" alt="<%= pin.title %>" class="w-full h-auto max-h-[90vh] object-contain"/>
       </section>
 
-      <!-- Right: Details column (scrolls internally if content is long) -->
+      <!-- Details Section -->
       <section class="md:w-5/12 w-full p-6 md:p-8 flex flex-col gap-4 overflow-auto">
-        <!-- Title / Owner -->
+
+        <!-- Title and Owner -->
         <div class="flex items-start justify-between gap-4">
           <div class="flex-1 pr-2">
-            <h1 class="text-2xl md:text-3xl font-semibold leading-tight text-gray-900">
-              <%= pin.title %>
-            </h1>
+            <h1 class="text-2xl md:text-3xl font-semibold text-gray-900"><%= pin.title %></h1>
             <% if (pin.category) { %>
               <p class="mt-2 text-sm text-gray-500">Category: <span class="font-medium text-gray-700"><%= pin.category %></span></p>
             <% } %>
@@ -61,15 +53,13 @@
           <% } %>
         </div>
 
-        <!-- Stats / meta -->
+        <!-- Meta -->
         <div class="flex items-center gap-4 text-sm text-gray-600">
           <div class="flex items-center gap-2">
-            <i class="fa-regular fa-heart"></i>
-            <span><%= pin.likes?.length || 0 %></span>
+            <i class="fa-regular fa-heart"></i><span><%= pin.likes?.length || 0 %></span>
           </div>
           <div class="flex items-center gap-2">
-            <i class="fa-regular fa-comment"></i>
-            <span><%= pin.comments?.length || 0 %></span>
+            <i class="fa-regular fa-comment"></i><span><%= pin.comments?.length || 0 %></span>
           </div>
           <div class="ml-auto text-xs text-gray-400">
             <%= pin.createdAt ? new Date(pin.createdAt).toLocaleDateString() : '' %>
@@ -77,32 +67,47 @@
         </div>
 
         <!-- Actions -->
-        <div class="flex flex-wrap items-center gap-3 mt-3">
-          <button
-            id="saveBtn"
-            onclick="savePost('<%= pin._id %>')"
-            class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white py-2 px-5 rounded-full transition-shadow text-sm shadow-sm"
-          >
-            <i class="fa-solid fa-bookmark"></i>
-            Save
-          </button>
+        <div class="flex flex-col gap-3 mt-3">
 
-          <a href="<%= pin.image?.url %>" target="_blank" rel="noopener" class="py-2 px-4 rounded-full border border-gray-200 text-sm hover:bg-gray-50">
-            View Full Image
-          </a>
+          <div class="flex flex-wrap items-center gap-3">
+            <button id="saveBtn" onclick="savePost('<%= pin._id %>')" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white py-2 px-5 rounded-full transition-shadow text-sm shadow-sm">
+              <i class="fa-solid fa-bookmark"></i> Save
+            </button>
 
-          <% if (user && user._id && user._id.toString() === (pin.owner?._id?.toString())) { %>
-            <a href="/edit/<%= pin._id %>" class="py-2 px-4 rounded-full text-sm border border-gray-200 hover:bg-gray-50">Edit</a>
-            <form action="/delete/<%= pin._id %>" method="POST" class="inline" onsubmit="return confirm('Delete this pin?');">
-              <button type="submit" class="py-2 px-4 rounded-full text-sm text-red-500 border border-red-100 hover:bg-red-50">Delete</button>
+            <a href="<%= pin.image?.url %>" target="_blank" class="py-2 px-4 rounded-full border border-gray-200 text-sm hover:bg-gray-50">
+              View Full Image
+            </a>
+
+            <% if (user && user._id && user._id.toString() === (pin.owner?._id?.toString())) { %>
+              <a href="/edit/<%= pin._id %>" class="py-2 px-4 rounded-full text-sm border border-gray-200 hover:bg-gray-50">Edit</a>
+              <form action="/delete/<%= pin._id %>" method="POST" class="inline" onsubmit="return confirm('Delete this pin?');">
+                <button type="submit" class="py-2 px-4 rounded-full text-sm text-red-500 border border-red-100 hover:bg-red-50">Delete</button>
+              </form>
+            <% } %>
+          </div>
+
+          <!-- Save to board -->
+          <% if (boards && boards.length > 0) { %>
+            <form action="/pinterest/boards/add-pin-to-board/<%= pin._id %>" method="POST" class="mt-4">
+              <label for="board" class="block text-sm font-medium text-gray-700 mb-1">Save to board:</label>
+              <select name="boardId" id="board" class="mb-3 p-2 rounded border w-full">
+                <% boards.forEach(board => { %>
+                  <option value="<%= board._id %>"><%= board.name %></option>
+                <% }) %>
+              </select>
+              <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
+                Save Pin to Board
+              </button>
             </form>
+          <% } else { %>
+            <p class="text-gray-500 italic">You have no boards yet. Create one to save this pin.</p>
           <% } %>
+
         </div>
       </section>
     </article>
   </main>
 
-  <!-- script link -->
   <script src="/scripts.js/home.js"></script>
 
   <noscript>
@@ -110,5 +115,6 @@
       .bg-pinterest-pattern { background-image: none !important; background-color: #F7F3F0; }
     </style>
   </noscript>
+
 </body>
 </html>

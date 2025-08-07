@@ -1,6 +1,7 @@
 // controllers/pinController.js
 const pinModel = require('../models/pinModel');
 const userModel = require('../models/userModel');
+const boardModel=require('../models/boardModel')
 
 /**
  * @desc    Create a new pin
@@ -62,10 +63,11 @@ const pinDetail= async (req, res) => {
       return res.status(404).send('Pin not found');
     }
 
-    const user =await userModel.findById(req.user._id)
+    const user =await userModel.findById(req.user._id);
+     const userBoards = await boardModel.find({ owner: req.user._id });
 
     // Step 3: Pass pin details to EJS page
-    res.render('pinDetail', { pin ,user});
+    res.render('pinDetail', { pin ,user,boards: userBoards});
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
