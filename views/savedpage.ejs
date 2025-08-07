@@ -70,24 +70,27 @@
 
       <!-- Scrollable Content -->
       <section class="overflow-y-auto p-4">
-        <!-- Boards Content -->
-        <div id="boardsContent" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4">
-          <!-- Repeat this block for more boards -->
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 1</div>
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 2</div>
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 3</div>
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 4</div>
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 5</div>
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 6</div>
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 7</div>
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 8</div>
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 9</div>
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 10</div>
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 11</div>
-          <div class="bg-gray-200 h-40 rounded flex items-center justify-center">Board 12</div>
-          <!-- Add more boards as needed -->
+      <div id="boardsContent" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4">
+  <% if (boards && boards.length > 0) { %>
+    <% boards.forEach(board => { %>
+      <a href="/pinterest/boards/<%= board._id %>" class="bg-white shadow rounded overflow-hidden hover:shadow-md transition duration-200">
+        <div class="h-auto  flex items-center justify-center bg-gray-100">
+          <% if (board.image?.url) { %>
+            <img src="<%= board.image.url %>" alt="<%= board.name %>" class="w-full h-full object-cover"/>
+          <% } else { %>
+            <span class="text-gray-500 font-semibold"><%= board.name %></span>
+          <% } %>
         </div>
-        
+        <div class="p-2 text-center text-sm font-medium text-gray-800">
+          <%= board.name %>
+        </div>
+      </a>
+    <% }) %>
+  <% } else { %>
+    <p class="text-gray-500 col-span-full text-center italic">You haven't created any boards yet.</p>
+  <% } %>
+</div>
+
         <!-- Pins Content -->
         <div id="pinsContent" class="hidden">
           <% if (!savedPosts || savedPosts.length === 0) { %>

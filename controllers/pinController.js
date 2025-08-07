@@ -74,21 +74,28 @@ const pinDetail= async (req, res) => {
   }
 }
 
-const savedPins= async (req, res) => {
-    try {
-        // Populate the saved posts from the User model
-        let user = await userModel.findById(req.user._id).populate('saved');
+const savedPins = async (req, res) => {
+  try {
+    // Populate both 'saved' and 'boards' fields in one go
+    let user = await userModel.findById(req.user._id)
+      .populate('saved')
+      .populate('boards');
 
-        // Render the page with populated saved posts
-        res.render('savedpage', {
-            user,
-            savedPosts: user.saved // Pass saved posts separately if you want
-        });
-    } catch (err) {
-        console.error(err);
-        res.redirect('/error');
-    }
+    // Render the page with populated saved posts and boards
+    res.render('savedpage', {
+      user,
+      savedPosts: user.saved,
+      boards: user.boards
+    });
+  } catch (err) {
+    console.error(err);
+    res.redirect('/error');
+  }
 };
+
+
+
+
 
 const unsavePin= async (req, res) => {
   try {
