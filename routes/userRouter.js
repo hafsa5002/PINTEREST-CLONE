@@ -22,7 +22,7 @@ router.get('/login',(req,res)=>{
 router.post('/login',logIn);
 
 //logout route
-router.post('/logout', logOut);
+router.post('/logout', isLoggedIn ,logOut);
 
 //homepage
 router.get('/home',isLoggedIn,getHomePage)

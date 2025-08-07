@@ -76,7 +76,7 @@ const logIn = (req, res, next) => {
 const logOut = (req, res) => {
   req.logout((err) => {
     if (err) return res.status(500).send('Logout failed');
-    res.send('Logged out');
+    res.redirect('/pinterest/login');
   });
 }
 
