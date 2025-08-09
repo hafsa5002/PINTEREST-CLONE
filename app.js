@@ -17,23 +17,27 @@ app.use(express.static(path.join(__dirname,'public')));
 //setting up view engine
 
 app.set('view engine','ejs');
-
+app.set('trust proxy', 1);
 // Session middleware
+const MongoStore = require('connect-mongo');
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
   cookie: {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 1000 * 60 * 60 * 24
+    maxAge: 1000 * 60 * 60 * 24,
   }
 }));
+
 
 // Initialize Passport
 initializePassport(passport);
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 
 //setting up routes
