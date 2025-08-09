@@ -106,4 +106,15 @@ const renderBoardForm=(req,res)=>{
 res.render('createBoard')
 }
 
-module.exports={createBoard, renderBoardForm,addPinToBoard, pinRender}
+
+const deleteBoard = async (req, res) => {
+  try {
+    await boardModel.findByIdAndDelete(req.params.id);
+    res.redirect('/pinterest/profile');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error deleting Board");
+  }
+};
+
+module.exports={createBoard, renderBoardForm,addPinToBoard, pinRender, deleteBoard}

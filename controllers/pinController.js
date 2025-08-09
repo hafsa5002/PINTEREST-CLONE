@@ -186,7 +186,17 @@ const editData = async (req, res) => {
   }
 };
 
+const deletePin = async (req, res) => {
+  try {
+    await pinModel.findByIdAndDelete(req.params.id);
+    res.redirect('/pinterest/profile');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error deleting pin");
+  }
+};
 
 
 
-module.exports = { createPin, pinDetail ,savedPins, savePin, unsavePin , edit ,editData};
+
+module.exports = { createPin, pinDetail ,savedPins, savePin, unsavePin , edit ,editData ,deletePin};

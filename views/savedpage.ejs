@@ -67,10 +67,14 @@
 
           <!-- Profile Info -->
           <div class="flex items-center gap-3 mt-2 md:mt-0">
-            <div class="h-12 w-12 rounded-full border-2 border-black"></div>
+         
+             <div class="h-14 w-14 rounded-full border-2 border-black overflow-hidden">
+    <img class="w-full h-full object-cover" src="<%= user.profileImage.url %>" alt="Profile Image">
+  </div> 
+
             <div class="text-sm md:text-base">
-              <div class="font-bold">HAFSA NADEEM</div>
-              <div class="text-gray-600">0 followers</div>
+              <div class="font-bold"><%=user.name%></div>
+          
             </div>
             <a href="/pinterest/profile">
             <button class="bg-gray-300 h-10 px-4 rounded-2xl text-sm">View Profile</button>
@@ -98,16 +102,16 @@
       </a>
     <% }) %>
   <% } else { %>
-    <p class="text-gray-500 col-span-full text-center italic">You haven't created any boards yet.</p>
+    <p class="text-black col-span-full text-center">You haven't created any boards yet.</p>
   <% } %>
 </div>
 
         <!-- Pins Content -->
         <div id="pinsContent" class="hidden">
           <% if (!savedPosts || savedPosts.length === 0) { %>
-            <div class="p-8 bg-white rounded shadow text-center">
-              <p class="text-lg">You haven't saved any pins yet.</p>
-              <a href="/" class="mt-3 inline-block text-sm underline">Browse Pins</a>
+            <div class="p-4 bg-white rounded text-center">
+              <p class="text-base">You haven't saved any pins yet.</p>
+              <a href="/" class="mt-3 inline-block text-sm underline ">Browse Pins</a>
             </div>
           <% } else { %>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 mt-4 auto-rows-fr">

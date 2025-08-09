@@ -1,5 +1,5 @@
 const express =require('express');
-const { createBoard, renderBoardForm,addPinToBoard, pinRender } = require('../controllers/boardController');
+const { createBoard, renderBoardForm,addPinToBoard, pinRender, deleteBoard } = require('../controllers/boardController');
 const upload=require('../middlewares/multer');
 const { isLoggedIn } = require('../middlewares/isLoggedIn');
 const boardModel = require('../models/boardModel');
@@ -12,6 +12,8 @@ router.post('/create',isLoggedIn, upload.single('file'), createBoard)
 // routes/pinterestRoutes.js
 router.post('/add-pin-to-board/:pinId', isLoggedIn, addPinToBoard);
 
-router.get('/:boardId',isLoggedIn,pinRender)
+router.get('/:boardId',isLoggedIn,pinRender);
+
+router.post('/delete/:id',deleteBoard)
 
 module.exports=router
