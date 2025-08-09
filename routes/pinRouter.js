@@ -1,6 +1,6 @@
 const express =require('express');
 const router =express.Router();
-const{createPin,pinDetail,savedPins,savePin, unsavePin} =require('../controllers/pinController');
+const{createPin,pinDetail,savedPins,savePin, unsavePin, edit, editData} =require('../controllers/pinController');
 const { isLoggedIn } = require('../middlewares/isLoggedIn');
 const upload = require('../middlewares/multer.js');
 
@@ -24,5 +24,10 @@ router.post('/save/:id',isLoggedIn, savePin);
 
 //post route to unsave post
 router.post('/:id/unsave',isLoggedIn,unsavePin);
+
+//edit profile
+router.get('/edit',isLoggedIn,edit);
+
+router.post('/edit',isLoggedIn, upload.single('file') ,editData)
 
 module.exports= router

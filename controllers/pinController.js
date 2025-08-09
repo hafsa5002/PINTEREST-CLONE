@@ -139,4 +139,54 @@ const savePin = async (req, res) => {
   }
 };
 
-module.exports = { createPin, pinDetail ,savedPins, savePin, unsavePin};
+const edit = async (req, res) => {
+    try {
+        const user = req.user; // safely assign the logged-in user
+        res.render('editProfile', { user });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Something went wrong");
+    }
+};
+
+
+const editData = async (req, res) => {
+  try {
+    const { name, username, email, bio } = req.body;
+
+    // Build the update object
+    const updateData = {
+      name,
+      username,
+      email,
+      bio
+    };
+
+    // If a new file is uploaded, set the profileImage
+    if (req.file) {
+      updateData.profileImage = {
+        url: req.file.path,        // Cloudinary URL
+        filename: req.file.filename // Cloudinary public_id
+      };
+    }
+
+    // Update in MongoDB
+    const updatedUser = await userModel.findOneAndUpdate(
+      { _id: req.user._id },
+      updateData,
+      { new: true, runValidators: true }
+    );
+
+    console.log('Updated User:', updatedUser.profileImage);
+    res.redirect('/pinterest/profile');
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error updating profile');
+  }
+};
+
+
+
+
+module.exports = { createPin, pinDetail ,savedPins, savePin, unsavePin , edit ,editData};

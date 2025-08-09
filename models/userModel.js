@@ -26,10 +26,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  profileImage: {
+ profileImage: {
+  url: {
     type: String,
-    default: '/images/default.jpg' // You can store a placeholder image
+    required: false, // not required if you have a default
+    default: '/images/default.jpg', // placeholder image
   },
+  filename: {
+    type: String,
+    default: '', // empty string if no file uploaded
+  },
+},
   bio: {
     type: String,
     maxlength: 300

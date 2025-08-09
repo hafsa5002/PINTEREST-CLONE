@@ -25,9 +25,6 @@ const createBoard = async (req, res) => {
         message: 'A board with this name already exists.',
       });
     }
-
-    console.log('Uploaded file object:', req.file);
-
     // Create the board
     const newBoard = await boardModel.create({
       name,

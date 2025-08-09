@@ -78,13 +78,13 @@
   
   <!-- Profile Image -->
   <div class="h-28 w-28 rounded-full border-2 border-black overflow-hidden">
-    <img class="w-full h-full object-cover" src="<%= user.profileImage %>" alt="Profile Image">
+    <img class="w-full h-full object-cover" src="<%= user.profileImage.url %>" alt="Profile Image">
   </div> 
 
   <!-- Name with Edit Icon -->
   <div class="font-bold text-3xl flex items-center gap-2">
     <%= user.name %>
-    <a href="/edit-profile" class="text-gray-600 hover:text-black text-base" title="Edit Name">
+    <a href="/pinterest/pin/edit" class="text-gray-600 hover:text-black text-base" title="Edit Name">
       <i class="fas fa-pen"></i>
     </a>
   </div>

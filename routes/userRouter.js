@@ -30,4 +30,5 @@ router.get('/home',isLoggedIn,getHomePage)
 //profile route
 router.get('/profile',isLoggedIn,getProfilePage);
 
+
 module.exports=router
