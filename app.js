@@ -45,7 +45,7 @@ app.use('/pinterest',userRouter);
 app.use('/pinterest/pin', pinRouter);
 app.use('/pinterest/boards',boardRouter)
 
-app.get('/pinterest',(req,res)=>{
+app.get('/',(req,res)=>{
   res.render('login')
 })
 
