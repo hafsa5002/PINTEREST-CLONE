@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Responsive Pinterest Clone</title>
+  <title>SAVED - PINTEREST</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="m-0 p-0 box-border">
@@ -49,11 +49,26 @@
       <section class="sticky top-0  p-4 z-0 ">
         <!-- Search Bar -->
         <div class="flex items-center mb-4 ">
-          <div class="bg-gray-200 h-10 w-10 rounded-l-xl flex items-center justify-center">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
-          <input type="text" placeholder="Search Your Pins" class="bg-gray-200 text-gray-700 h-10 w-full rounded-r-xl px-3 text-sm md:text-base outline-none">
-        </div>
+          <!-- Search bar takes all space except buttons -->
+<div class="flex items-center flex-1">
+  <form action="/pinterest/pin/search" method="post" class="flex w-full">
+    <!-- Search icon -->
+    <div class="bg-gray-200 h-10 w-10 rounded-l-xl flex items-center justify-center">
+      <i class="fa-solid fa-magnifying-glass text-gray-600"></i>
+    </div>
+
+    <!-- Search input -->
+    <input
+      type="text"
+      name="query"
+      placeholder="Search Your Pins"
+      class="bg-gray-200 text-gray-800 h-10 w-full rounded-r-xl px-3 text-sm md:text-base outline-none"
+    />
+
+    <!-- Optional submit button (hidden for icon-based search) -->
+    <input type="submit" value="Search" class="hidden" />
+  </form>
+</div>  </div>
 
         <!-- Header & Tabs -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-0 px-2 ">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Board — Pinterest Clone</title>
+  <title>CREATE BOARD - PINTEREST</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
@@ -49,11 +49,26 @@
       <!-- Top Bar -->
       <section class="sticky top-0 bg-white border-b border-gray-300 p-4 z-10">
         <div class="flex items-center">
-          <div class="bg-gray-200 h-10 w-10 flex items-center justify-center rounded-l-xl">
-            <i class="fa-solid fa-magnifying-glass text-gray-700"></i>
-          </div>
-          <input type="text" placeholder="Search Your Boards" class="h-10 w-full bg-gray-200 px-3 text-sm rounded-r-xl outline-none text-gray-700" />
-        </div>
+        <!-- Search bar takes all space except buttons -->
+<div class="flex items-center flex-1">
+  <form action="/pinterest/pin/search" method="post" class="flex w-full">
+    <!-- Search icon -->
+    <div class="bg-gray-200 h-10 w-10 rounded-l-xl flex items-center justify-center">
+      <i class="fa-solid fa-magnifying-glass text-gray-600"></i>
+    </div>
+
+    <!-- Search input -->
+    <input
+      type="text"
+      name="query"
+      placeholder="Search Your Pins"
+      class="bg-gray-200 text-gray-800 h-10 w-full rounded-r-xl px-3 text-sm md:text-base outline-none"
+    />
+
+    <!-- Optional submit button (hidden for icon-based search) -->
+    <input type="submit" value="Search" class="hidden" />
+  </form>
+</div> </div>
       </section>
 
       <!-- Page Header -->

@@ -197,6 +197,22 @@ const deletePin = async (req, res) => {
 };
 
 
+const search = async (req, res) => {
+  try {
+    const searchTerm = req.body.query; // "query" is the input's name
+
+    // Case-insensitive partial match on the title
+    const pins = await pinModel.find({
+      title: { $regex: searchTerm, $options: "i" }
+    });
+
+    res.render("searchPin", { pins });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error searching pins");
+  }
+};
 
 
-module.exports = { createPin, pinDetail ,savedPins, savePin, unsavePin , edit ,editData ,deletePin};
+
+module.exports = { createPin, pinDetail ,savedPins, savePin, unsavePin , edit ,editData ,deletePin,search};

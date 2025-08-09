@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BOARD POST - PINTEREST</title>
+  <title>SEARCH - PINTEREST</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
@@ -47,7 +47,6 @@
       <!-- Top Bar -->
       <section class="sticky top-0 bg-white border-b border-gray-300 p-4 z-10">
         <div class="flex items-center">
-         <!-- Search bar takes all space except buttons -->
 <div class="flex items-center flex-1">
   <form action="/pinterest/pin/search" method="post" class="flex w-full">
     <!-- Search icon -->
@@ -66,34 +65,31 @@
     <!-- Optional submit button (hidden for icon-based search) -->
     <input type="submit" value="Search" class="hidden" />
   </form>
-</div> </div>
-      </section>
-
-      <!-- Page Header -->
-      <section class="bg-white border-b border-gray-300 px-6 py-4 font-bold text-xl md:text-2xl">
-          <h2 class="text-2xl font-bold mb-4">BOARD : <%= board.name.toUpperCase() %></h2>
+</div>
       </section>
 
       <!-- Form -->
-      
-<section class="p-4 md:p-6 overflow-y-auto flex-grow bg-white">
- 
-<% if (board.pins.length === 0) { %>
-  <p class="text-gray-500">No pins added yet.</p>
-<% } else { %>
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4">
-    <% board.pins.forEach(pin => { %>
-      <a href="/pinterest/pin/details/<%=pin._id%>" class="block">
-        <div class="rounded-lg shadow bg-white overflow-hidden hover:shadow-lg transition">
+   <section class="p-4 bg-white min-h-screen">
+  <div id="pinsContent" class="columns-2 sm:columns-3 md:columns-4 xl:columns-5 gap-4">
+    <% if (pins && pins.length > 0) { %>
+      <% pins.forEach(pin => { %>
+        <a href="/pinterest/pin/details/<%= pin._id %>" class="block mb-4 break-inside-avoid rounded-lg shadow bg-white h-auto hover:shadow-lg transition-shadow duration-200">
+          <img src="<%= pin.image.url %>" alt="<%= pin.title %>" class="w-full object-contain" loading="lazy" />
           <div class="p-2">
-            <img src="<%= pin.image.url %>" alt="Pin image" class="w-full h-48 object-cover rounded-md mb-2">
-            <p class="text-lg font-semibold text-gray-800"><%= pin.title %></p>
+            <h3 class="text-sm font-semibold"><%= pin.title %></h3>
+            <% if (pin.description) { %>
+              <p class="text-xs text-gray-600"><%= pin.description %></p>
+            <% } %>
+            <p class="text-[10px] text-gray-400 mt-1">Category: <%= pin.category %></p>
           </div>
-        </div>
-      </a>
-    <% }) %>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <div class="col-span-full text-center text-gray-500">No pins to show.</div>
+    <% } %>
   </div>
-<% } %>
+</section>
+
 
       
     </main>

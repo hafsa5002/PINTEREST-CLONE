@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title><%= pin.title %> | Pin Details</title>
+  <title><%= pin.title %> | PINTEREST</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/style.css" />
   <style>
@@ -87,13 +87,8 @@
 
         <!-- Meta -->
         <div class="flex items-center gap-4 text-sm text-gray-600">
-          <div class="flex items-center gap-2">
-            <i class="fa-regular fa-heart"></i><span><%= pin.likes?.length || 0 %></span>
-          </div>
-          <div class="flex items-center gap-2">
-            <i class="fa-regular fa-comment"></i><span><%= pin.comments?.length || 0 %></span>
-          </div>
-          <div class="ml-auto text-xs text-gray-400">
+          
+          <div class="ml-auto text-sm text-gray-700">
             <%= pin.createdAt ? new Date(pin.createdAt).toLocaleDateString() : '' %>
           </div>
         </div>
