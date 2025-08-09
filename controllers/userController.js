@@ -37,17 +37,19 @@ const registerUser = async (req, res) => {
       role: role || 'user'  // default to 'user' if role not provided
     });
 
-    return res.status(201).json({
-      success: true,
-      message: 'User registered successfully',
-      user: {
-        _id: newUser._id,
-        name: newUser.name,
-        username: newUser.username,
-        email: newUser.email,
-        role: newUser.role
-      }
-    });
+return res.status(201).redirect('/pinterest/login')
+
+    // return res.status(201).json({
+    //   success: true,
+    //   message: 'User registered successfully',
+    //   user: {
+    //     _id: newUser._id,
+    //     name: newUser.name,
+    //     username: newUser.username,
+    //     email: newUser.email,
+    //     role: newUser.role
+    //   }
+
   } catch (error) {
     console.error('Registration Error:');
     return res.status(500).json({

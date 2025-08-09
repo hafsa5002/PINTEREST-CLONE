@@ -6,7 +6,7 @@ const passport = require('passport');
 const initializePassport = require('./config/passport-config');
 const userRouter=require('./routes/userRouter');
 const pinRouter=require('./routes/pinRouter');
-const boardRouter=require('./routes/boardRouter')
+const boardRouter=require('./routes/boardRouter');
 require('dotenv').config();
 
 //setting up middlewares for parsing data
@@ -40,6 +40,13 @@ app.use(passport.session());
 app.use('/pinterest',userRouter);
 app.use('/pinterest/pin', pinRouter);
 app.use('/pinterest/boards',boardRouter)
+
+app.get('/pinterest',(req,res)=>{
+  res.render('login')
+})
+
+const helmet = require('helmet');
+app.use(helmet());
 
 
 module.exports = app;

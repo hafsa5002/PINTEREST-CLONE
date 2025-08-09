@@ -31,7 +31,7 @@ router.get('/edit',isLoggedIn,edit);
 router.post('/edit',isLoggedIn, upload.single('file') ,editData);
 
 //delete route
-router.post('/delete/:id', deletePin);
+router.post('/delete/:id', isLoggedIn,deletePin);
 
 //search
 router.post('/search',search)

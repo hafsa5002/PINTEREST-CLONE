@@ -25,7 +25,7 @@ router.post('/login',logIn);
 router.post('/logout', isLoggedIn ,logOut);
 
 //homepage
-router.get('/home',isLoggedIn,getHomePage)
+router.get('/home',getHomePage)
 
 //profile route
 router.get('/profile',isLoggedIn,getProfilePage);

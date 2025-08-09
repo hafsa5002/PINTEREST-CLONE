@@ -14,6 +14,6 @@ router.post('/add-pin-to-board/:pinId', isLoggedIn, addPinToBoard);
 
 router.get('/:boardId',isLoggedIn,pinRender);
 
-router.post('/delete/:id',deleteBoard)
+router.post('/delete/:id',isLoggedIn,deleteBoard)
 
 module.exports=router
