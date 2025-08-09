@@ -177,7 +177,7 @@ const editData = async (req, res) => {
       { new: true, runValidators: true }
     );
 
-    console.log('Updated User:', updatedUser.profileImage);
+
     res.redirect('/pinterest/profile');
 
   } catch (err) {
