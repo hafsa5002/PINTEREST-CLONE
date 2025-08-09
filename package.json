@@ -6,7 +6,9 @@
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch:css": "tailwindcss -i ./src/input.css -o ./public/css/style.css --watch",
-    "dev": "concurrently \"npm run watch:css\" \"nodemon server.js\""
+    "dev": "concurrently \"npm run watch:css\" \"nodemon server.js\"",
+    "build-css": "tailwindcss -i ./src/input.css -o ./public/output.css --minify"
+
   },
   "author": "",
   "license": "ISC",
