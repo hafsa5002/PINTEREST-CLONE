@@ -46,7 +46,7 @@ app.use('/pinterest/pin', pinRouter);
 app.use('/pinterest/boards',boardRouter)
 
 app.get('/',(req,res)=>{
-  res.render('login')
+  res.render('home')
 })
 
 const helmet = require('helmet');
