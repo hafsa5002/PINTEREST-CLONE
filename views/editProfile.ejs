@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <link rel="stylesheet" href="/css/style.css"/>
 </head>
-<body class="bg-[#f0f0f0] font-sans">
+<body class="bg-[#f0f0f0] font- overflow-y-auto">
 
-<div class="grid grid-cols-1 md:grid-cols-[80px_1fr] h-screen">
+<div class="grid grid-cols-1 md:grid-cols-[80px_1fr] h-screen overflow-y-auto">
 
 
     <!-- Sidebar -->
@@ -103,7 +103,7 @@
 
           <textarea name="bio" rows="4" placeholder="Write your bio..." class="p-3 text-sm border border-gray-300 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-red-400"><%= user.bio || '' %></textarea>
 
-          <button type="submit" class="mt-4 bg-red-500 text-white font-medium py-2 rounded-xl hover:bg-red-600 transition">
+          <button type="submit" class="mt-4 mb-10 bg-red-500 text-white font-medium py-2 rounded-xl hover:bg-red-600 transition">
             Save Changes
           </button>
         </div>

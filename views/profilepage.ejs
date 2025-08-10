@@ -15,21 +15,22 @@
     <!-- Sidebar -->
     <aside class="fixed md:static bottom-0 left-0 z-10 w-full md:w-20 h-16  md:h-full bg-white border-t-2 md:border-t-0 md:border-r-2 border-gray-200 flex md:flex-col flex-row justify-between items-center md:items-stretch p-2 gap-4 md:gap-20">
       <div class="flex md:flex-col flex-row gap-4 items-center justify-evenly md:h-2/3 w-full  ">
-        <a href="/pinterest/home">
+        <!-- <a href="/pinterest/home">
           <div class="w-10 h-10 overflow-hidden">
             <img src="/images/pinterestlogo.jpg" alt="Pinterest Logo" class="p-1 w-full h-full object-cover rounded" />
           </div>
-        </a>
+        </a> -->
         <a href="/pinterest/home" class=  "text-black hover:text-gray-600"><i class="fa-solid fa-house text-xl" title="Home"></i></a>
         <a href="/pinterest/profile" class= "text-black hover:text-gray-600"><i class="fa-solid fa-user text-xl" title="profile"></i></a>
         <a href="/pinterest/pin/saved" class="text-black hover:text-gray-600"><i class="fa-solid fa-bookmark text-xl" title="Saved"></i> </a>
         <a href="/pinterest/pin" class=  "text-black hover:text-gray-600"><i class="fa-solid fa-circle-plus text-xl" title="Create"></i></a>
-         </div>
+       <button id="settingsBtn" class="p-2 hover:bg-gray-100 rounded-full focus:outline-none">
+    <i class="fas fa-cog text-xl"></i>
+  </button>  
+      </div>
       <div class="hidden md:flex items-center justify-center md:mb-4 ">
   <!-- Settings Icon Button -->
-  <button id="settingsBtn" class="p-2 hover:bg-gray-100 rounded-full focus:outline-none">
-    <i class="fas fa-cog text-xl"></i>
-  </button>
+ 
 
   <!-- Dropdown Menu (Initially Hidden) -->
   <div id="settingsMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-50 ">
