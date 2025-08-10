@@ -26,10 +26,15 @@
         <a href="/pinterest/profile" class= "text-black hover:text-gray-600"><i class="fa-solid fa-user text-xl" title="profile"></i></a>
         <a href="/pinterest/pin/saved" class="text-black hover:text-gray-600"><i class="fa-solid fa-bookmark text-xl" title="Saved"></i> </a>
         <a href="/pinterest/pin" class=  "text-black hover:text-gray-600"><i class="fa-solid fa-circle-plus text-xl" title="Create"></i></a>
-      
-  <button id="settingsBtn" class="p-2 hover:bg-gray-100 rounded-full focus:outline-none">
+      <form action="/pinterest/logout" method="POST">
+  <button type="submit" class="p-2 hover:bg-gray-100 rounded-full focus:outline-none" title="Logout">
+    <i class="fa-solid fa-right-from-bracket text-xl"></i>
+  </button>
+</form>
+
+  <!-- <button id="settingsBtn" class="p-2 hover:bg-gray-100 rounded-full focus:outline-none">
     <i class="fas fa-cog text-xl"></i>
-  </button>      
+  </button>       -->
       </div>
       <div class="hidden md:flex items-center justify-center md:mb-4 ">
   <!-- Settings Icon Button -->
