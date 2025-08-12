@@ -26,7 +26,7 @@ const pinSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ['Art', 'DIY', 'Travel', 'Food', 'Fashion', 'Tech', 'Other'],
+      enum: ['Art', 'DIY', 'Travel', 'Food', 'Fashion', 'Technology', 'Other'],
       default: 'Other',
     },
     createdBy: {
